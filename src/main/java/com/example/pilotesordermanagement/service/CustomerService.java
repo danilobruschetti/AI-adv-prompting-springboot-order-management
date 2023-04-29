@@ -19,9 +19,9 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
 
-    public Customer getCustomerById(Long id) {
-        return customerRepository.findById(id)
-                .orElseThrow(() -> new CustomerNotFoundException(id));
+    public CustomerDto getCustomerById(Long id) {
+        return customerMapper.toCustomerDto(customerRepository.findById(id)
+                .orElseThrow(() -> new CustomerNotFoundException(id)));
     }
 
     @Transactional

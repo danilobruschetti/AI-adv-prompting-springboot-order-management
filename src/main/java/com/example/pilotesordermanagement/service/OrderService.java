@@ -1,7 +1,9 @@
 package com.example.pilotesordermanagement.service;
 
+import com.example.pilotesordermanagement.dto.CustomerDto;
 import com.example.pilotesordermanagement.dto.OrderDto;
 import com.example.pilotesordermanagement.exception.OrderNotFoundException;
+import com.example.pilotesordermanagement.mapper.CustomerMapper;
 import com.example.pilotesordermanagement.mapper.OrderMapper;
 import com.example.pilotesordermanagement.model.Customer;
 import com.example.pilotesordermanagement.model.Order;
@@ -22,15 +24,16 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final CustomerService customerService;
     private final OrderMapper orderMapper;
+    private final CustomerMapper customerMapper;
 
     private static final BigDecimal PILOTES_PRICE = new BigDecimal("1.33");
 
     @Transactional
     public OrderDto createOrder(OrderDto orderDto) {
         OrderValidation.validate(orderDto);
-        Customer customer = customerService.getCustomerById(orderDto.getCustomerId()); // Fetch the customer by ID
+        CustomerDto customer = customerService.getCustomerById(orderDto.getCustomerId()); // Fetch the customer by ID
         Order order = orderMapper.toOrder(orderDto);
-        order.setCustomer(customer); // Set the fetched customer
+        order.setCustomer(customerMapper.toCustomer(customer)); // Set the fetched customer
         order.setCreatedAt(LocalDateTime.now());
         order.setOrderTotal(calculateOrderTotal(orderDto.getNumberOfPilotes()));
         order = orderRepository.save(order);
