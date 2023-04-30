@@ -3,13 +3,18 @@ package com.example.pilotesordermanagement.model;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "orders")
 public class Order {

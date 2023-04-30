@@ -4,9 +4,14 @@ import com.example.pilotesordermanagement.dto.CustomerDto;
 import com.example.pilotesordermanagement.model.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(
+        componentModel = MappingConstants.ComponentModel.SPRING,
+        unmappedTargetPolicy = ReportingPolicy.IGNORE
+)
 public interface CustomerMapper {
   CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
 

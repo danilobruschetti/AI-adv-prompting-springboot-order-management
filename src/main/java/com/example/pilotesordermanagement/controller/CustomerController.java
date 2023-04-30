@@ -3,7 +3,7 @@ package com.example.pilotesordermanagement.controller;
 import com.example.pilotesordermanagement.dto.CustomerDto;
 import com.example.pilotesordermanagement.service.CustomerService;
 import java.util.List;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
