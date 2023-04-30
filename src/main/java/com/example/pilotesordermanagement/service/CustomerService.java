@@ -18,6 +18,7 @@ public class CustomerService {
   private final CustomerRepository customerRepository;
   private final CustomerMapper customerMapper;
 
+  @Transactional(readOnly = true)
   public CustomerDto getCustomerById(Long id) {
     return customerMapper.toCustomerDto(
         customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException(id)));

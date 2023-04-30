@@ -1,11 +1,10 @@
 package com.example.pilotesordermanagement.model;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +22,7 @@ public class Order {
   private Long id;
 
   @NotNull(message = "Customer must not be null")
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "customer_id", nullable = false)
   private Customer customer;
 

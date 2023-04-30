@@ -3,6 +3,7 @@ package com.example.pilotesordermanagement.config;
 import static java.util.stream.Collectors.joining;
 
 import com.example.pilotesordermanagement.dto.ErrorResponseDto;
+import com.example.pilotesordermanagement.exception.CustomerNotFoundException;
 import com.example.pilotesordermanagement.exception.OrderNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(value = {OrderNotFoundException.class})
   protected ResponseEntity<ErrorResponseDto> handleConflict(OrderNotFoundException ex) {
+    return new ResponseEntity<>(new ErrorResponseDto(ex.getMessage()), HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler(value = {CustomerNotFoundException.class})
+  protected ResponseEntity<ErrorResponseDto> handleConflict(CustomerNotFoundException ex) {
     return new ResponseEntity<>(new ErrorResponseDto(ex.getMessage()), HttpStatus.NOT_FOUND);
   }
 

@@ -9,9 +9,8 @@ import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(
-        componentModel = MappingConstants.ComponentModel.SPRING,
-        unmappedTargetPolicy = ReportingPolicy.IGNORE
-)
+    componentModel = MappingConstants.ComponentModel.SPRING,
+    unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface OrderMapper {
   OrderMapper INSTANCE = Mappers.getMapper(OrderMapper.class);
 
@@ -20,5 +19,6 @@ public interface OrderMapper {
   @Mapping(target = "createdAt", ignore = true)
   Order toOrder(OrderDto orderDto);
 
+  @Mapping(target = "customerId", source = "customer.id")
   OrderDto toOrderDto(Order order);
 }

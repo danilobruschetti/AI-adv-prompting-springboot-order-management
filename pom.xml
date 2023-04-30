@@ -160,7 +160,7 @@
                         <!-- explicit default values -->
                         <googleJavaFormat>
                             <style>GOOGLE</style>
-                            <version>1.7</version>
+                            <version>1.10.0</version>
                         </googleJavaFormat>
                         <includes>
                             <include>src/main/java/**/*.java</include>

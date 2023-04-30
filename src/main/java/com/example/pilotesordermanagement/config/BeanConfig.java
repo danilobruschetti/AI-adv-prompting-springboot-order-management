@@ -12,20 +12,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeanConfig {
 
-    @Autowired
-    private CustomerRepository customerRepository;
+  @Autowired private CustomerRepository customerRepository;
 
-    @Autowired
-    private OrderRepository orderRepository;
+  @Autowired private OrderRepository orderRepository;
 
-    @Bean
-    public CustomerMapper customerMapper() {
-        return Mappers.getMapper(CustomerMapper.class);
-    }
+  @Bean
+  public CustomerMapper customerMapper() {
+    return Mappers.getMapper(CustomerMapper.class);
+  }
 
-    @Bean
-    public OrderMapper orderMapper() {
-        return Mappers.getMapper(OrderMapper.class);
-    }
-
+  @Bean
+  public OrderMapper orderMapper() {
+    return Mappers.getMapper(OrderMapper.class);
+  }
 }

@@ -1,11 +1,12 @@
 package com.example.pilotesordermanagement.service;
 
-import com.example.pilotesordermanagement.dto.CustomerDto;
 import com.example.pilotesordermanagement.dto.OrderDto;
+import com.example.pilotesordermanagement.exception.CustomerValidationException;
 import com.example.pilotesordermanagement.exception.OrderNotFoundException;
-import com.example.pilotesordermanagement.mapper.CustomerMapper;
 import com.example.pilotesordermanagement.mapper.OrderMapper;
+import com.example.pilotesordermanagement.model.Customer;
 import com.example.pilotesordermanagement.model.Order;
+import com.example.pilotesordermanagement.repository.CustomerRepository;
 import com.example.pilotesordermanagement.repository.OrderRepository;
 import com.example.pilotesordermanagement.validation.OrderValidation;
 import java.math.BigDecimal;
@@ -20,19 +21,22 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class OrderService {
   private final OrderRepository orderRepository;
-  private final CustomerService customerService;
+  private final CustomerRepository customerRepository;
   private final OrderMapper orderMapper;
-  private final CustomerMapper customerMapper;
-
   private static final BigDecimal PILOTES_PRICE = new BigDecimal("1.33");
 
   @Transactional
   public OrderDto createOrder(OrderDto orderDto) {
     OrderValidation.validate(orderDto);
-    CustomerDto customer =
-        customerService.getCustomerById(orderDto.getCustomerId()); // Fetch the customer by ID
+    Customer customer =
+        customerRepository
+            .findById(orderDto.getCustomerId())
+            .orElseThrow(
+                () ->
+                    new CustomerValidationException(
+                        "Customer not found with ID: " + orderDto.getCustomerId()));
     Order order = orderMapper.toOrder(orderDto);
-    order.setCustomer(customerMapper.toCustomer(customer)); // Set the fetched customer
+    order.setCustomer(customer); // Set the fetched customer
     order.setCreatedAt(LocalDateTime.now());
     order.setOrderTotal(calculateOrderTotal(orderDto.getNumberOfPilotes()));
     order = orderRepository.save(order);
