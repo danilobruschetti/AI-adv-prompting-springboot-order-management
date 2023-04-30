@@ -4,7 +4,9 @@ import static java.util.stream.Collectors.joining;
 
 import com.example.pilotesordermanagement.dto.ErrorResponseDto;
 import com.example.pilotesordermanagement.exception.CustomerNotFoundException;
+import com.example.pilotesordermanagement.exception.CustomerValidationException;
 import com.example.pilotesordermanagement.exception.OrderNotFoundException;
+import com.example.pilotesordermanagement.exception.OrderValidationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -27,6 +29,16 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(value = {CustomerNotFoundException.class})
   protected ResponseEntity<ErrorResponseDto> handleConflict(CustomerNotFoundException ex) {
     return new ResponseEntity<>(new ErrorResponseDto(ex.getMessage()), HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler(value = {OrderValidationException.class})
+  protected ResponseEntity<ErrorResponseDto> handleConflict(OrderValidationException ex) {
+    return new ResponseEntity<>(new ErrorResponseDto(ex.getMessage()), HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(value = {CustomerValidationException.class})
+  protected ResponseEntity<ErrorResponseDto> handleConflict(CustomerValidationException ex) {
+    return new ResponseEntity<>(new ErrorResponseDto(ex.getMessage()), HttpStatus.BAD_REQUEST);
   }
 
   @Override

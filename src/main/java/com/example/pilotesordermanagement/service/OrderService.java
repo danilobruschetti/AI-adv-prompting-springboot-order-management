@@ -3,6 +3,7 @@ package com.example.pilotesordermanagement.service;
 import com.example.pilotesordermanagement.dto.OrderDto;
 import com.example.pilotesordermanagement.exception.CustomerValidationException;
 import com.example.pilotesordermanagement.exception.OrderNotFoundException;
+import com.example.pilotesordermanagement.exception.OrderValidationException;
 import com.example.pilotesordermanagement.mapper.OrderMapper;
 import com.example.pilotesordermanagement.model.Customer;
 import com.example.pilotesordermanagement.model.Order;
@@ -49,9 +50,9 @@ public class OrderService {
     LocalDateTime currentTime = LocalDateTime.now();
 
     if (currentTime.isAfter(order.getCreatedAt().plusMinutes(5))) {
-      throw new IllegalStateException("Order cannot be updated after 5 minutes");
+      throw new OrderValidationException("Order cannot be updated after 5 minutes");
     }
-
+    order.setDeliveryAddress(orderDto.getDeliveryAddress());
     order.setNumberOfPilotes(orderDto.getNumberOfPilotes());
     order.setOrderTotal(calculateOrderTotal(order.getNumberOfPilotes()));
     Order updatedOrder = orderRepository.save(order);

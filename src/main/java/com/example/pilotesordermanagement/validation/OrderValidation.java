@@ -2,6 +2,7 @@ package com.example.pilotesordermanagement.validation;
 
 import com.example.pilotesordermanagement.dto.OrderDto;
 import com.example.pilotesordermanagement.exception.CustomerValidationException;
+import com.example.pilotesordermanagement.exception.OrderValidationException;
 
 public class OrderValidation {
 
@@ -14,11 +15,11 @@ public class OrderValidation {
         || orderDto.getNumberOfPilotes() < 5
         || orderDto.getNumberOfPilotes() > 15
         || orderDto.getNumberOfPilotes() % 5 != 0) {
-      throw new CustomerValidationException("Number of pilotes must be 5, 10 or 15.");
+      throw new OrderValidationException("Number of pilotes must be 5, 10 or 15.");
     }
 
     if (orderDto.getDeliveryAddress() == null || orderDto.getDeliveryAddress().trim().isEmpty()) {
-      throw new CustomerValidationException("Delivery address is required.");
+      throw new OrderValidationException("Delivery address is required.");
     }
   }
 }
