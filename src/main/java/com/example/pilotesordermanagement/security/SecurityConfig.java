@@ -31,11 +31,13 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests(
-            (authorize) ->
-                authorize.requestMatchers("/swagger-ui/**", "/api-docs/**", "/api/**").permitAll())
-        // .requestMatchers("orders/search").hasRole("ADMIN").anyRequest().authenticated())
-        .csrf((csrf) -> csrf.disable());
+    http.authorizeHttpRequests()
+        .requestMatchers("/api/V1/orders/search")
+        .hasRole("ADMIN")
+        .anyRequest()
+        .authenticated()
+        .and()
+        .httpBasic();
     return http.build();
   }
 
