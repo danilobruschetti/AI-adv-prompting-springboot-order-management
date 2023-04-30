@@ -12,6 +12,11 @@ public class OpenApiConfig {
   public OpenAPI usersMicroserviceOpenAPI() {
     return new OpenAPI()
         .info(
-            new Info().title("Your API Title").description("Your API Description").version("1.0"));
+            new Info()
+                .title("Pilotes Order Management")
+                .description(
+                    "Pilotes Order Management is a web-based order management system built with Java 18, Spring Boot, lombok and an in-memory H2 database."
+                        + " The system allows you to create and manage customer orders, fetch customer information, and calculate order totals.")
+                .version("1.0"));
   }
 }
