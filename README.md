@@ -73,15 +73,8 @@ The API documentation is provided using Swagger UI. After running the applicatio
 
 ## Contributing :)
 
-If you'd like to contribute to the project, please follow the steps below:
-
-1. Fork the project repository
-2. Create a feature branch
-3. Commit your changes
-4. Push your branch to your fork
-5. Create a pull request to the main project repository
-
-Please ensure your code follows best practices, and include tests for your changes.
+If you'd like to contribute to the project, please read the CONSIDERATION.md file
 
 ## License
 This project is licensed under the Jaagad Digital Company, For more information, write to danilo.bruschetti@gmail.com
+
