@@ -7,9 +7,20 @@ The system allows you to create and manage customer orders, fetch customer infor
 
 ## Features
 
-- Create and manage customer orders
-- Fetch customer information
+- Create Customer with unique telephone number
+- Create and manage customer orders within 5 minutes
 - Calculate order totals
+- Search orders if authorized
+
+## Getting Started
+- run the application and navigate to
+[http://localhost:8280/swagger-ui.html](http://localhost:8280/swagger-ui.html)
+
+- Login with user/user or admin/admin (for order searches)
+
+- Create a customer
+- Insert Order for that customer
+- Search and manage customer orders
 
 ## Local Development
 
