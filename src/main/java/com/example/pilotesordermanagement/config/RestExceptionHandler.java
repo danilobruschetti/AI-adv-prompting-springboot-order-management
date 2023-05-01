@@ -7,6 +7,7 @@ import com.example.pilotesordermanagement.exception.CustomerNotFoundException;
 import com.example.pilotesordermanagement.exception.CustomerValidationException;
 import com.example.pilotesordermanagement.exception.OrderNotFoundException;
 import com.example.pilotesordermanagement.exception.OrderValidationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -39,6 +40,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(value = {CustomerValidationException.class})
   protected ResponseEntity<ErrorResponseDto> handleConflict(CustomerValidationException ex) {
     return new ResponseEntity<>(new ErrorResponseDto(ex.getMessage()), HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(value = {DataIntegrityViolationException.class})
+  protected ResponseEntity<ErrorResponseDto> handleConflict(DataIntegrityViolationException ex) {
+    return new ResponseEntity<>(
+        new ErrorResponseDto("Please check your data, this operation is not valid"),
+        HttpStatus.BAD_REQUEST);
   }
 
   @Override

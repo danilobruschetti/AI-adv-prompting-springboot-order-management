@@ -22,7 +22,8 @@ public class CustomerController {
   @PostMapping
   @Operation(
       summary = "Create a customer",
-      description = "Create a customer of Miquel Montoro's Resturant")
+      description =
+          "Create a customer of Miquel Montoro's Resturant, Telephon Number must be unique!")
   public ResponseEntity<CustomerDto> createCustomer(@Valid @RequestBody CustomerDto customerDto) {
     CustomerDto createdCustomer = customerService.createCustomer(customerDto);
     return new ResponseEntity<>(createdCustomer, HttpStatus.CREATED);

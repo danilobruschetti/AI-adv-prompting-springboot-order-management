@@ -16,7 +16,8 @@ import lombok.Setter;
 @Table(name = "customers")
 public class Customer {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq")
+  @SequenceGenerator(name = "customer_seq", sequenceName = "customer_seq", allocationSize = 1)
   private Long id;
 
   @NotBlank(message = "First name must not be blank")
