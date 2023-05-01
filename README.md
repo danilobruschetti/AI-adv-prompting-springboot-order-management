@@ -77,4 +77,3 @@ If you'd like to contribute to the project, please read the CONSIDERATION.md fil
 
 ## License
 This project is licensed under the Jaagad Digital Company, For more information, write to danilo.bruschetti@gmail.com
-
