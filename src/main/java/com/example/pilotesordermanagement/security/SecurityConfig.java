@@ -31,7 +31,11 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests()
+    // This line of code disables CSRF protection only for the purpose of this proof of concept
+    // (POC).
+    http.csrf()
+        .disable()
+        .authorizeHttpRequests()
         .requestMatchers("/api/V1/orders/search")
         .hasRole("ADMIN")
         .anyRequest()

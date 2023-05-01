@@ -1,17 +1,10 @@
 package com.example.pilotesordermanagement.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class ErrorResponseDto {
   private String message;
-
-  public ErrorResponseDto(String message) {
-    this.message = message;
-  }
-
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
-  }
 }
