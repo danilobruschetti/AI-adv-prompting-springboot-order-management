@@ -76,4 +76,4 @@ The API documentation is provided using Swagger UI. After running the applicatio
 If you'd like to contribute to the project, please read the CONSIDERATION.md file
 
 ## License
-This project is licensed under the Jaagad Digital Company, For more information, write to danilo.bruschetti@gmail.com
+For more information, write to danilo.bruschetti@gmail.com
